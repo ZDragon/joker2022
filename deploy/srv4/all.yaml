@@ -1,0 +1,231 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: joker-demo-base
+  labels:
+    kubernetes.io/metadata.name: echo-grpc
+spec:
+  finalizers:
+    - kubernetes
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: regcred
+  namespace: joker-demo-base
+type: kubernetes.io/dockerconfigjson
+data:
+  .dockerconfigjson: your_docker_config
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: default
+  namespace: joker-demo-base
+imagePullSecrets:
+  - name: regcred
+
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: joker-env-variables
+  namespace: joker-demo-base
+data:
+  global.xds.server.port: '50051'
+  global.xds.server.hostname: 'JokerV3'
+  global.xds.server.credentials.enabled: 'true'
+  global.xds.client.target: 'myxds.joker-demo-base:50051'
+  global.logging.file.path: /opt/logs/
+  global.profile.active: simple
+  global.jaeger.http-sender.url: jaeger-collector.istio-system.svc.cluster.local:14268
+  spring.application.name: JDemoServerBASE
+  global.xds.client.logLevelXDS: info
+  global.xds.client.logLevel: info
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xds-v3
+  namespace: joker-demo-base
+  labels:
+    app: myxds
+    version: v3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myxds
+      version: v3
+  template:
+    metadata:
+      labels:
+        app: myxds
+        version: v3
+      annotations:
+        proxy.istio.io/config: '{"holdApplicationUntilProxyStarts": true}'
+        prometheus.istio.io/merge-metrics: "false"
+        prometheus.io/path: /actuator/prometheus
+        prometheus.io/port: '8080'
+        prometheus.io/scrape: 'true'
+    spec:
+      containers:
+        - name: xds
+          image: %IMAGE%
+          args:
+            - '-Dspring.profiles.active=simple'
+          ports:
+            - containerPort: 50051
+              protocol: TCP
+            - containerPort: 8080
+              protocol: TCP
+          resources:
+            limits:
+              cpu: '2'
+              memory: 1Gi
+            requests:
+              cpu: '1'
+              memory: 512Mi
+          envFrom:
+            - configMapRef:
+                name: joker-env-variables
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - mountPath: /opt/logs
+              name: logsdir
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      volumes:
+        - name: logsdir
+          emptyDir: { }
+      securityContext: {}
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: joker-client-env-variables
+  namespace: joker-demo-base
+data:
+  global.xds.server.port: '50051'
+  global.xds.server.hostname: 'JokerV1'
+  global.xds.server.credentials.enabled: 'true'
+  global.xds.client.target: 'myxds.joker-demo-base:7070'
+  global.logging.file.path: /opt/logs/
+  global.profile.active: baseclient
+  global.jaeger.http-sender.url: jaeger-collector.istio-system.svc.cluster.local:14268
+  spring.application.name: JDemoClient
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xds-client
+  namespace: joker-demo-base
+  labels:
+    app: myxds-client
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myxds-client
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: myxds-client
+        version: v1
+      annotations:
+        inject.istio.io/templates: grpc-agent
+        proxy.istio.io/config: '{"holdApplicationUntilProxyStarts": true}'
+        prometheus.istio.io/merge-metrics: "false"
+        prometheus.io/path: /actuator/prometheus
+        prometheus.io/port: '8081'
+        prometheus.io/scrape: 'true'
+    spec:
+      containers:
+        - name: xds
+          image: %IMAGE%
+          args:
+            - '-Dspring.profiles.active=baseclient'
+          ports:
+            - containerPort: 8081
+              protocol: TCP
+          resources:
+            limits:
+              cpu: '2'
+              memory: 1Gi
+            requests:
+              cpu: '1'
+              memory: 512Mi
+          envFrom:
+            - configMapRef:
+                name: joker-client-env-variables
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - mountPath: /opt/logs
+              name: logsdir
+      volumes:
+        - name: logsdir
+          emptyDir: { }
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: myxds
+  namespace: joker-demo-base
+  labels:
+    app: myxds
+spec:
+  ports:
+    - name: grpc
+      protocol: TCP
+      port: 7070
+      targetPort: 50051
+  selector:
+    app: myxds
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: client
+  namespace: joker-demo-base
+  labels:
+    app: myxds-client
+spec:
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8081
+      targetPort: 8081
+  selector:
+    app: myxds-client
+  type: ClusterIP

@@ -1,0 +1,956 @@
+2022-11-03 14:25:21.273 ERROR 53880 --- [Thread-6] io.grpc.xds.XdsServerWrapper             : Exception!java.lang.AssertionError: io.grpc.ManagedChannelRegistry$ProviderNotFoundException: io.grpc.netty.shaded.io.grpc.netty.NettyChannelProvider: does not support 1 or more of [class io.grpc.netty.shaded.io.netty.channel.unix.DomainSocketAddress]
+2022-11-03 14:26:29.977  WARN 53916 --- [Thread-6] i.g.x.XdsServerBuilder$DefaultListener   : [port:50051] UNAVAILABLE: Failed to initialize xDS
+2022-11-03 14:27:36.481 ERROR 53950 --- [Thread-6] io.grpc.xds.XdsServerWrapper             : Exception!java.lang.AssertionError: io.grpc.ManagedChannelRegistry$ProviderNotFoundException: io.grpc.netty.shaded.io.grpc.netty.NettyChannelProvider: does not support 1 or more of [class io.grpc.netty.shaded.io.netty.channel.unix.DomainSocketAddress]
+2022-11-03 14:28:08.368  WARN 53964 --- [Thread-6] i.g.x.XdsServerBuilder$DefaultListener   : [port:50051] UNAVAILABLE: Can only support xDS v3 with listener resource name template
+2022-11-03 14:30:59.988  WARN 54489 --- [Thread-6] i.g.x.XdsServerBuilder$DefaultListener   : [port:50051] UNAVAILABLE: Can only support xDS v3 with listener resource name template
+2022-11-03 14:38:18.636 ERROR 54795 --- [Thread-6] io.grpc.xds.XdsServerWrapper             : Exception!java.lang.AssertionError: io.grpc.ManagedChannelRegistry$ProviderNotFoundException: io.grpc.netty.shaded.io.grpc.netty.NettyChannelProvider: does not support 1 or more of [class io.grpc.netty.shaded.io.netty.channel.unix.DomainSocketAddress]
+2022-11-03 14:40:03.447  WARN 54886 --- [grpc-default-executor-0] io.grpc.internal.ManagedChannelImpl      : [Channel<5>: (istiod.apps.server.ru)] Failed to resolve name. status=Status{code=UNAVAILABLE, description=Unable to resolve host istiod.apps.server.ru, cause=java.lang.RuntimeException: java.net.UnknownHostException: istiod.apps.server.ru: nodename nor servname provided, or not known
+	at io.grpc.internal.DnsNameResolver.resolveAddresses(DnsNameResolver.java:223)
+	at io.grpc.internal.DnsNameResolver.doResolve(DnsNameResolver.java:282)
+	at io.grpc.grpclb.GrpclbNameResolver.doResolve(GrpclbNameResolver.java:63)
+	at io.grpc.internal.DnsNameResolver$Resolve.run(DnsNameResolver.java:318)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: java.net.UnknownHostException: istiod.apps.server.ru: nodename nor servname provided, or not known
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.base/java.net.InetAddress$PlatformNameService.lookupAllHostAddr(InetAddress.java:929)
+	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1515)
+	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:848)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1505)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1364)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1298)
+	at io.grpc.internal.DnsNameResolver$JdkAddressResolver.resolveAddress(DnsNameResolver.java:631)
+	at io.grpc.internal.DnsNameResolver.resolveAddresses(DnsNameResolver.java:219)
+	... 6 more
+}
+2022-11-03 14:40:06.605  WARN 54886 --- [grpc-timer-0] i.g.x.XdsServerBuilder$DefaultListener   : [port:50051] UNAVAILABLE: Listener xds.istio.io/grpc/lds/inbound/0.0.0.0:50051 unavailable
+2022-11-03 14:40:10.394  WARN 54886 --- [grpc-default-executor-1] io.grpc.internal.ManagedChannelImpl      : [Channel<5>: (istiod.apps.server.ru)] Failed to resolve name. status=Status{code=UNAVAILABLE, description=Unable to resolve host istiod.apps.server.ru, cause=java.lang.RuntimeException: java.net.UnknownHostException: istiod.apps.server.ru
+	at io.grpc.internal.DnsNameResolver.resolveAddresses(DnsNameResolver.java:223)
+	at io.grpc.internal.DnsNameResolver.doResolve(DnsNameResolver.java:282)
+	at io.grpc.grpclb.GrpclbNameResolver.doResolve(GrpclbNameResolver.java:63)
+	at io.grpc.internal.DnsNameResolver$Resolve.run(DnsNameResolver.java:318)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: java.net.UnknownHostException: istiod.apps.server.ru
+	at java.base/java.net.InetAddress$CachedAddresses.get(InetAddress.java:797)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1505)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1364)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1298)
+	at io.grpc.internal.DnsNameResolver$JdkAddressResolver.resolveAddress(DnsNameResolver.java:631)
+	at io.grpc.internal.DnsNameResolver.resolveAddresses(DnsNameResolver.java:219)
+	... 6 more
+}
+2022-11-03 14:40:16.230  WARN 54886 --- [grpc-default-executor-1] io.grpc.internal.ManagedChannelImpl      : [Channel<5>: (istiod.apps.server.ru)] Failed to resolve name. status=Status{code=UNAVAILABLE, description=Unable to resolve host istiod.apps.server.ru, cause=java.lang.RuntimeException: java.net.UnknownHostException: istiod.apps.server.ru: nodename nor servname provided, or not known
+	at io.grpc.internal.DnsNameResolver.resolveAddresses(DnsNameResolver.java:223)
+	at io.grpc.internal.DnsNameResolver.doResolve(DnsNameResolver.java:282)
+	at io.grpc.grpclb.GrpclbNameResolver.doResolve(GrpclbNameResolver.java:63)
+	at io.grpc.internal.DnsNameResolver$Resolve.run(DnsNameResolver.java:318)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: java.net.UnknownHostException: istiod.apps.server.ru: nodename nor servname provided, or not known
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.base/java.net.InetAddress$PlatformNameService.lookupAllHostAddr(InetAddress.java:929)
+	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1515)
+	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:848)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1505)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1364)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1298)
+	at io.grpc.internal.DnsNameResolver$JdkAddressResolver.resolveAddress(DnsNameResolver.java:631)
+	at io.grpc.internal.DnsNameResolver.resolveAddresses(DnsNameResolver.java:219)
+	... 6 more
+}
+2022-11-03 14:40:30.122  WARN 54911 --- [grpc-default-executor-0] i.g.x.XdsServerBuilder$DefaultListener   : [port:50051] UNAVAILABLE: HTTP status code 503
+invalid content-type: text/html; charset=UTF-8
+headers: Metadata(:status=503,content-type=text/html; charset=UTF-8,p3p=CP="CAO PSA OUR",expires=Thu, 01 Jan 1970 00:00:00 GMT,cache-control=no-store, no-cache, must-revalidate, post-check=0, pre-check=0,pragma=no-cache,content-length=2847)
+DATA-----------------------------
+﻿<html>
+  <head>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=cyrillic" rel="stylesheet">
+  <title>Внимание!</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <style type="text/css">
+	body {
+		margin: 0;
+		padding: 0;
+	}
+
+	.demo{
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: 50%;
+		height: 60%;
+		margin: auto;
+		background-color: white;
+	}
+
+	p { font-family: "Open Sans"; font-size: 18px;}
+
+	p.link {
+	ont-family: "Open Sans"; font-size: 12px;
+    margin-top: 25px;
+	margin-bottom: 25px;
+	margin-left: 60px;
+	}
+	p.text {
+	ont-family: "Open Sans"; font-size: 18px;
+	margin-left: 60px;
+	}
+	p.text2 {
+	ont-family: "Open Sans"; font-size: 18px;
+	margin-top: 10px;
+	margin-left: 60px;
+	}
+	p.text_contact {
+	ont-family: "Open Sans"; font-size: 18px;
+	margin-left: 95px;
+	}
+	p.text_diag_head {
+	ont-family: "Open Sans"; font-size: 14px;
+	margin-top: 25px;
+	margin-left: 60px;
+	}
+	p.text_diag1 {
+	ont-family: "Open Sans"; font-size: 12px;
+	margin-left: 95px;
+	}
+    </style>
+  </head>
+  <body bgcolor="white" font-family: 'Open Sans', sans-serif;>
+
+<div class="demo">
+  <table>
+    <tr>
+        <td rowspan="3" valign="top" ><div id="heart"><div class="k"><img src="http://10.35.222.105/lock_small.png" width="200" height="200" ></div></div></td>
+        <td colspan="2">
+		<p class='text'>РЕСУРС ЗАБЛОКИРОВАН В СООТВЕТСТВИИ <br>С ПОЛИТИКАМИ КИБЕРБЕЗОПАСНОСТИ БАНКА </br></p>
+		<p class='text'>За дополнительной консультацией обращайтесь в <br><b>Центр поддержки кибербезопасности:</b> </br></p>
+		<p class='text'> <b>Звоните</b>
+		<p class='text_contact'><b>8 800 707-45-00</b> (федеральный номер)
+		<p class='text_contact'><b>8 690 44-090 </b>(внутренний номер)
+		</td>
+    </tr>
+    <tr>
+        <td>
+		<p class='text2'> <b>Пишите</b>
+		<p class='text_contact'><b>SCST@sberbank.ru</b>
+		<p class='text_contact'><b>SCST@omega.sbrf.ru</b>
+		<p class='text'>Будьте бдительны! </p>
+		<p class='text'> <img src="http://10.35.222.105/logo_long_scs.png" width="270" > </p>
+		</td>
+        <td align="right" >
+		</td>
+    </tr>
+    <tr>
+        <td colspan="2">
+		<p class='text_diag_head'>Информация для ЦПКБ:
+		<p class='text_diag1'><b>Средство блокировки:</b> NGFW
+		<br><b>IP/User:</b> 10.8.23.49
+		<br><b>URL:</b> example.com:80/envoy.service.discovery.v3.AggregatedDiscoveryService/StreamAggregatedResources
+		<br><b>Category:</b> URL Blacklist Dyn
+		</p>
+		</td>
+    </tr>
+</table>
+
+</div>
+  </body>
+</html> nodeID: sidecar~172.17.109.56~xds-client-7c5548f44-4w88s.joker-demo-one~joker-demo-one.svc.cluster.local
+2022-11-03 14:40:30.683  WARN 54911 --- [grpc-default-executor-0] i.g.x.XdsServerBuilder$DefaultListener   : [port:50051] UNAVAILABLE: HTTP status code 503
+invalid content-type: text/html; charset=UTF-8
+headers: Metadata(:status=503,content-type=text/html; charset=UTF-8,p3p=CP="CAO PSA OUR",expires=Thu, 01 Jan 1970 00:00:00 GMT,cache-control=no-store, no-cache, must-revalidate, post-check=0, pre-check=0,pragma=no-cache,content-length=2847)
+DATA-----------------------------
+﻿<html>
+  <head>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=cyrillic" rel="stylesheet">
+  <title>Внимание!</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <style type="text/css">
+	body {
+		margin: 0;
+		padding: 0;
+	}
+
+	.demo{
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: 50%;
+		height: 60%;
+		margin: auto;
+		background-color: white;
+	}
+
+	p { font-family: "Open Sans"; font-size: 18px;}
+
+	p.link {
+	ont-family: "Open Sans"; font-size: 12px;
+    margin-top: 25px;
+	margin-bottom: 25px;
+	margin-left: 60px;
+	}
+	p.text {
+	ont-family: "Open Sans"; font-size: 18px;
+	margin-left: 60px;
+	}
+	p.text2 {
+	ont-family: "Open Sans"; font-size: 18px;
+	margin-top: 10px;
+	margin-left: 60px;
+	}
+	p.text_contact {
+	ont-family: "Open Sans"; font-size: 18px;
+	margin-left: 95px;
+	}
+	p.text_diag_head {
+	ont-family: "Open Sans"; font-size: 14px;
+	margin-top: 25px;
+	margin-left: 60px;
+	}
+	p.text_diag1 {
+	ont-family: "Open Sans"; font-size: 12px;
+	margin-left: 95px;
+	}
+    </style>
+  </head>
+  <body bgcolor="white" font-family: 'Open Sans', sans-serif;>
+
+<div class="demo">
+  <table>
+    <tr>
+        <td rowspan="3" valign="top" ><div id="heart"><div class="k"><img src="http://10.35.222.105/lock_small.png" width="200" height="200" ></div></div></td>
+        <td colspan="2">
+		<p class='text'>РЕСУРС ЗАБЛОКИРОВАН В СООТВЕТСТВИИ <br>С ПОЛИТИКАМИ КИБЕРБЕЗОПАСНОСТИ БАНКА </br></p>
+		<p class='text'>За дополнительной консультацией обращайтесь в <br><b>Центр поддержки кибербезопасности:</b> </br></p>
+		<p class='text'> <b>Звоните</b>
+		<p class='text_contact'><b>8 800 707-45-00</b> (федеральный номер)
+		<p class='text_contact'><b>8 690 44-090 </b>(внутренний номер)
+		</td>
+    </tr>
+    <tr>
+        <td>
+		<p class='text2'> <b>Пишите</b>
+		<p class='text_contact'><b>SCST@sberbank.ru</b>
+		<p class='text_contact'><b>SCST@omega.sbrf.ru</b>
+		<p class='text'>Будьте бдительны! </p>
+		<p class='text'> <img src="http://10.35.222.105/logo_long_scs.png" width="270" > </p>
+		</td>
+        <td align="right" >
+		</td>
+    </tr>
+    <tr>
+        <td colspan="2">
+		<p class='text_diag_head'>Информация для ЦПКБ:
+		<p class='text_diag1'><b>Средство блокировки:</b> NGFW
+		<br><b>IP/User:</b> 10.8.23.49
+		<br><b>URL:</b> example.com:80/envoy.service.discovery.v3.AggregatedDiscoveryService/StreamAggregatedResources
+		<br><b>Category:</b> URL Blacklist Dyn
+		</p>
+		</td>
+    </tr>
+</table>
+
+</div>
+  </body>
+</html> nodeID: sidecar~172.17.109.56~xds-client-7c5548f44-4w88s.joker-demo-one~joker-demo-one.svc.cluster.local
+2022-11-03 14:40:31.990  WARN 54911 --- [grpc-default-executor-0] i.g.x.XdsServerBuilder$DefaultListener   : [port:50051] UNAVAILABLE: HTTP status code 503
+invalid content-type: text/html; charset=UTF-8
+headers: Metadata(:status=503,content-type=text/html; charset=UTF-8,p3p=CP="CAO PSA OUR",expires=Thu, 01 Jan 1970 00:00:00 GMT,cache-control=no-store, no-cache, must-revalidate, post-check=0, pre-check=0,pragma=no-cache,content-length=2847)
+DATA-----------------------------
+﻿<html>
+  <head>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=cyrillic" rel="stylesheet">
+  <title>Внимание!</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <style type="text/css">
+	body {
+		margin: 0;
+		padding: 0;
+	}
+
+	.demo{
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: 50%;
+		height: 60%;
+		margin: auto;
+		background-color: white;
+	}
+
+	p { font-family: "Open Sans"; font-size: 18px;}
+
+	p.link {
+	ont-family: "Open Sans"; font-size: 12px;
+    margin-top: 25px;
+	margin-bottom: 25px;
+	margin-left: 60px;
+	}
+	p.text {
+	ont-family: "Open Sans"; font-size: 18px;
+	margin-left: 60px;
+	}
+	p.text2 {
+	ont-family: "Open Sans"; font-size: 18px;
+	margin-top: 10px;
+	margin-left: 60px;
+	}
+	p.text_contact {
+	ont-family: "Open Sans"; font-size: 18px;
+	margin-left: 95px;
+	}
+	p.text_diag_head {
+	ont-family: "Open Sans"; font-size: 14px;
+	margin-top: 25px;
+	margin-left: 60px;
+	}
+	p.text_diag1 {
+	ont-family: "Open Sans"; font-size: 12px;
+	margin-left: 95px;
+	}
+    </style>
+  </head>
+  <body bgcolor="white" font-family: 'Open Sans', sans-serif;>
+
+<div class="demo">
+  <table>
+    <tr>
+        <td rowspan="3" valign="top" ><div id="heart"><div class="k"><img src="http://10.35.222.105/lock_small.png" width="200" height="200" ></div></div></td>
+        <td colspan="2">
+		<p class='text'>РЕСУРС ЗАБЛОКИРОВАН В СООТВЕТСТВИИ <br>С ПОЛИТИКАМИ КИБЕРБЕЗОПАСНОСТИ БАНКА </br></p>
+		<p class='text'>За дополнительной консультацией обращайтесь в <br><b>Центр поддержки кибербезопасности:</b> </br></p>
+		<p class='text'> <b>Звоните</b>
+		<p class='text_contact'><b>8 800 707-45-00</b> (федеральный номер)
+		<p class='text_contact'><b>8 690 44-090 </b>(внутренний номер)
+		</td>
+    </tr>
+    <tr>
+        <td>
+		<p class='text2'> <b>Пишите</b>
+		<p class='text_contact'><b>SCST@sberbank.ru</b>
+		<p class='text_contact'><b>SCST@omega.sbrf.ru</b>
+		<p class='text'>Будьте бдительны! </p>
+		<p class='text'> <img src="http://10.35.222.105/logo_long_scs.png" width="270" > </p>
+		</td>
+        <td align="right" >
+		</td>
+    </tr>
+    <tr>
+        <td colspan="2">
+		<p class='text_diag_head'>Информация для ЦПКБ:
+		<p class='text_diag1'><b>Средство блокировки:</b> NGFW
+		<br><b>IP/User:</b> 10.8.23.49
+		<br><b>URL:</b> example.com:80/envoy.service.discovery.v3.AggregatedDiscoveryService/StreamAggregatedResources
+		<br><b>Category:</b> URL Blacklist Dyn
+		</p>
+		</td>
+    </tr>
+</table>
+
+</div>
+  </body>
+</html> nodeID: sidecar~172.17.109.56~xds-client-7c5548f44-4w88s.joker-demo-one~joker-demo-one.svc.cluster.local
+2022-11-03 14:40:34.140  WARN 54911 --- [grpc-default-executor-0] i.g.x.XdsServerBuilder$DefaultListener   : [port:50051] UNAVAILABLE: HTTP status code 503
+invalid content-type: text/html; charset=UTF-8
+headers: Metadata(:status=503,content-type=text/html; charset=UTF-8,p3p=CP="CAO PSA OUR",expires=Thu, 01 Jan 1970 00:00:00 GMT,cache-control=no-store, no-cache, must-revalidate, post-check=0, pre-check=0,pragma=no-cache,content-length=2847)
+DATA-----------------------------
+﻿<html>
+  <head>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=cyrillic" rel="stylesheet">
+  <title>Внимание!</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <style type="text/css">
+	body {
+		margin: 0;
+		padding: 0;
+	}
+
+	.demo{
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: 50%;
+		height: 60%;
+		margin: auto;
+		background-color: white;
+	}
+
+	p { font-family: "Open Sans"; font-size: 18px;}
+
+	p.link {
+	ont-family: "Open Sans"; font-size: 12px;
+    margin-top: 25px;
+	margin-bottom: 25px;
+	margin-left: 60px;
+	}
+	p.text {
+	ont-family: "Open Sans"; font-size: 18px;
+	margin-left: 60px;
+	}
+	p.text2 {
+	ont-family: "Open Sans"; font-size: 18px;
+	margin-top: 10px;
+	margin-left: 60px;
+	}
+	p.text_contact {
+	ont-family: "Open Sans"; font-size: 18px;
+	margin-left: 95px;
+	}
+	p.text_diag_head {
+	ont-family: "Open Sans"; font-size: 14px;
+	margin-top: 25px;
+	margin-left: 60px;
+	}
+	p.text_diag1 {
+	ont-family: "Open Sans"; font-size: 12px;
+	margin-left: 95px;
+	}
+    </style>
+  </head>
+  <body bgcolor="white" font-family: 'Open Sans', sans-serif;>
+
+<div class="demo">
+  <table>
+    <tr>
+        <td rowspan="3" valign="top" ><div id="heart"><div class="k"><img src="http://10.35.222.105/lock_small.png" width="200" height="200" ></div></div></td>
+        <td colspan="2">
+		<p class='text'>РЕСУРС ЗАБЛОКИРОВАН В СООТВЕТСТВИИ <br>С ПОЛИТИКАМИ КИБЕРБЕЗОПАСНОСТИ БАНКА </br></p>
+		<p class='text'>За дополнительной консультацией обращайтесь в <br><b>Центр поддержки кибербезопасности:</b> </br></p>
+		<p class='text'> <b>Звоните</b>
+		<p class='text_contact'><b>8 800 707-45-00</b> (федеральный номер)
+		<p class='text_contact'><b>8 690 44-090 </b>(внутренний номер)
+		</td>
+    </tr>
+    <tr>
+        <td>
+		<p class='text2'> <b>Пишите</b>
+		<p class='text_contact'><b>SCST@sberbank.ru</b>
+		<p class='text_contact'><b>SCST@omega.sbrf.ru</b>
+		<p class='text'>Будьте бдительны! </p>
+		<p class='text'> <img src="http://10.35.222.105/logo_long_scs.png" width="270" > </p>
+		</td>
+        <td align="right" >
+		</td>
+    </tr>
+    <tr>
+        <td colspan="2">
+		<p class='text_diag_head'>Информация для ЦПКБ:
+		<p class='text_diag1'><b>Средство блокировки:</b> NGFW
+		<br><b>IP/User:</b> 10.8.23.49
+		<br><b>URL:</b> example.com:80/envoy.service.discovery.v3.AggregatedDiscoveryService/StreamAggregatedResources
+		<br><b>Category:</b> URL Blacklist Dyn
+		</p>
+		</td>
+    </tr>
+</table>
+
+</div>
+  </body>
+</html> nodeID: sidecar~172.17.109.56~xds-client-7c5548f44-4w88s.joker-demo-one~joker-demo-one.svc.cluster.local
+2022-11-03 14:40:37.857  WARN 54911 --- [grpc-default-executor-0] i.g.x.XdsServerBuilder$DefaultListener   : [port:50051] UNAVAILABLE: HTTP status code 503
+invalid content-type: text/html; charset=UTF-8
+headers: Metadata(:status=503,content-type=text/html; charset=UTF-8,p3p=CP="CAO PSA OUR",expires=Thu, 01 Jan 1970 00:00:00 GMT,cache-control=no-store, no-cache, must-revalidate, post-check=0, pre-check=0,pragma=no-cache,content-length=2847)
+DATA-----------------------------
+﻿<html>
+  <head>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=cyrillic" rel="stylesheet">
+  <title>Внимание!</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <style type="text/css">
+	body {
+		margin: 0;
+		padding: 0;
+	}
+
+	.demo{
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: 50%;
+		height: 60%;
+		margin: auto;
+		background-color: white;
+	}
+
+	p { font-family: "Open Sans"; font-size: 18px;}
+
+	p.link {
+	ont-family: "Open Sans"; font-size: 12px;
+    margin-top: 25px;
+	margin-bottom: 25px;
+	margin-left: 60px;
+	}
+	p.text {
+	ont-family: "Open Sans"; font-size: 18px;
+	margin-left: 60px;
+	}
+	p.text2 {
+	ont-family: "Open Sans"; font-size: 18px;
+	margin-top: 10px;
+	margin-left: 60px;
+	}
+	p.text_contact {
+	ont-family: "Open Sans"; font-size: 18px;
+	margin-left: 95px;
+	}
+	p.text_diag_head {
+	ont-family: "Open Sans"; font-size: 14px;
+	margin-top: 25px;
+	margin-left: 60px;
+	}
+	p.text_diag1 {
+	ont-family: "Open Sans"; font-size: 12px;
+	margin-left: 95px;
+	}
+    </style>
+  </head>
+  <body bgcolor="white" font-family: 'Open Sans', sans-serif;>
+
+<div class="demo">
+  <table>
+    <tr>
+        <td rowspan="3" valign="top" ><div id="heart"><div class="k"><img src="http://10.35.222.105/lock_small.png" width="200" height="200" ></div></div></td>
+        <td colspan="2">
+		<p class='text'>РЕСУРС ЗАБЛОКИРОВАН В СООТВЕТСТВИИ <br>С ПОЛИТИКАМИ КИБЕРБЕЗОПАСНОСТИ БАНКА </br></p>
+		<p class='text'>За дополнительной консультацией обращайтесь в <br><b>Центр поддержки кибербезопасности:</b> </br></p>
+		<p class='text'> <b>Звоните</b>
+		<p class='text_contact'><b>8 800 707-45-00</b> (федеральный номер)
+		<p class='text_contact'><b>8 690 44-090 </b>(внутренний номер)
+		</td>
+    </tr>
+    <tr>
+        <td>
+		<p class='text2'> <b>Пишите</b>
+		<p class='text_contact'><b>SCST@sberbank.ru</b>
+		<p class='text_contact'><b>SCST@omega.sbrf.ru</b>
+		<p class='text'>Будьте бдительны! </p>
+		<p class='text'> <img src="http://10.35.222.105/logo_long_scs.png" width="270" > </p>
+		</td>
+        <td align="right" >
+		</td>
+    </tr>
+    <tr>
+        <td colspan="2">
+		<p class='text_diag_head'>Информация для ЦПКБ:
+		<p class='text_diag1'><b>Средство блокировки:</b> NGFW
+		<br><b>IP/User:</b> 10.8.23.49
+		<br><b>URL:</b> example.com:80/envoy.service.discovery.v3.AggregatedDiscoveryService/StreamAggregatedResources
+		<br><b>Category:</b> URL Blacklist Dyn
+		</p>
+		</td>
+    </tr>
+</table>
+
+</div>
+  </body>
+</html> nodeID: sidecar~172.17.109.56~xds-client-7c5548f44-4w88s.joker-demo-one~joker-demo-one.svc.cluster.local
+2022-11-03 14:40:44.089  WARN 54911 --- [grpc-default-executor-0] i.g.x.XdsServerBuilder$DefaultListener   : [port:50051] UNAVAILABLE: HTTP status code 503
+invalid content-type: text/html; charset=UTF-8
+headers: Metadata(:status=503,content-type=text/html; charset=UTF-8,p3p=CP="CAO PSA OUR",expires=Thu, 01 Jan 1970 00:00:00 GMT,cache-control=no-store, no-cache, must-revalidate, post-check=0, pre-check=0,pragma=no-cache,content-length=2847)
+DATA-----------------------------
+﻿<html>
+  <head>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=cyrillic" rel="stylesheet">
+  <title>Внимание!</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <style type="text/css">
+	body {
+		margin: 0;
+		padding: 0;
+	}
+
+	.demo{
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: 50%;
+		height: 60%;
+		margin: auto;
+		background-color: white;
+	}
+
+	p { font-family: "Open Sans"; font-size: 18px;}
+
+	p.link {
+	ont-family: "Open Sans"; font-size: 12px;
+    margin-top: 25px;
+	margin-bottom: 25px;
+	margin-left: 60px;
+	}
+	p.text {
+	ont-family: "Open Sans"; font-size: 18px;
+	margin-left: 60px;
+	}
+	p.text2 {
+	ont-family: "Open Sans"; font-size: 18px;
+	margin-top: 10px;
+	margin-left: 60px;
+	}
+	p.text_contact {
+	ont-family: "Open Sans"; font-size: 18px;
+	margin-left: 95px;
+	}
+	p.text_diag_head {
+	ont-family: "Open Sans"; font-size: 14px;
+	margin-top: 25px;
+	margin-left: 60px;
+	}
+	p.text_diag1 {
+	ont-family: "Open Sans"; font-size: 12px;
+	margin-left: 95px;
+	}
+    </style>
+  </head>
+  <body bgcolor="white" font-family: 'Open Sans', sans-serif;>
+
+<div class="demo">
+  <table>
+    <tr>
+        <td rowspan="3" valign="top" ><div id="heart"><div class="k"><img src="http://10.35.222.105/lock_small.png" width="200" height="200" ></div></div></td>
+        <td colspan="2">
+		<p class='text'>РЕСУРС ЗАБЛОКИРОВАН В СООТВЕТСТВИИ <br>С ПОЛИТИКАМИ КИБЕРБЕЗОПАСНОСТИ БАНКА </br></p>
+		<p class='text'>За дополнительной консультацией обращайтесь в <br><b>Центр поддержки кибербезопасности:</b> </br></p>
+		<p class='text'> <b>Звоните</b>
+		<p class='text_contact'><b>8 800 707-45-00</b> (федеральный номер)
+		<p class='text_contact'><b>8 690 44-090 </b>(внутренний номер)
+		</td>
+    </tr>
+    <tr>
+        <td>
+		<p class='text2'> <b>Пишите</b>
+		<p class='text_contact'><b>SCST@sberbank.ru</b>
+		<p class='text_contact'><b>SCST@omega.sbrf.ru</b>
+		<p class='text'>Будьте бдительны! </p>
+		<p class='text'> <img src="http://10.35.222.105/logo_long_scs.png" width="270" > </p>
+		</td>
+        <td align="right" >
+		</td>
+    </tr>
+    <tr>
+        <td colspan="2">
+		<p class='text_diag_head'>Информация для ЦПКБ:
+		<p class='text_diag1'><b>Средство блокировки:</b> NGFW
+		<br><b>IP/User:</b> 10.8.23.49
+		<br><b>URL:</b> example.com:80/envoy.service.discovery.v3.AggregatedDiscoveryService/StreamAggregatedResources
+		<br><b>Category:</b> URL Blacklist Dyn
+		</p>
+		</td>
+    </tr>
+</table>
+
+</div>
+  </body>
+</html> nodeID: sidecar~172.17.109.56~xds-client-7c5548f44-4w88s.joker-demo-one~joker-demo-one.svc.cluster.local
+2022-11-03 14:40:54.896  WARN 54911 --- [grpc-default-executor-0] i.g.x.XdsServerBuilder$DefaultListener   : [port:50051] UNAVAILABLE: HTTP status code 503
+invalid content-type: text/html; charset=UTF-8
+headers: Metadata(:status=503,content-type=text/html; charset=UTF-8,p3p=CP="CAO PSA OUR",expires=Thu, 01 Jan 1970 00:00:00 GMT,cache-control=no-store, no-cache, must-revalidate, post-check=0, pre-check=0,pragma=no-cache,content-length=2847)
+DATA-----------------------------
+﻿<html>
+  <head>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=cyrillic" rel="stylesheet">
+  <title>Внимание!</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <style type="text/css">
+	body {
+		margin: 0;
+		padding: 0;
+	}
+
+	.demo{
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: 50%;
+		height: 60%;
+		margin: auto;
+		background-color: white;
+	}
+
+	p { font-family: "Open Sans"; font-size: 18px;}
+
+	p.link {
+	ont-family: "Open Sans"; font-size: 12px;
+    margin-top: 25px;
+	margin-bottom: 25px;
+	margin-left: 60px;
+	}
+	p.text {
+	ont-family: "Open Sans"; font-size: 18px;
+	margin-left: 60px;
+	}
+	p.text2 {
+	ont-family: "Open Sans"; font-size: 18px;
+	margin-top: 10px;
+	margin-left: 60px;
+	}
+	p.text_contact {
+	ont-family: "Open Sans"; font-size: 18px;
+	margin-left: 95px;
+	}
+	p.text_diag_head {
+	ont-family: "Open Sans"; font-size: 14px;
+	margin-top: 25px;
+	margin-left: 60px;
+	}
+	p.text_diag1 {
+	ont-family: "Open Sans"; font-size: 12px;
+	margin-left: 95px;
+	}
+    </style>
+  </head>
+  <body bgcolor="white" font-family: 'Open Sans', sans-serif;>
+
+<div class="demo">
+  <table>
+    <tr>
+        <td rowspan="3" valign="top" ><div id="heart"><div class="k"><img src="http://10.35.222.105/lock_small.png" width="200" height="200" ></div></div></td>
+        <td colspan="2">
+		<p class='text'>РЕСУРС ЗАБЛОКИРОВАН В СООТВЕТСТВИИ <br>С ПОЛИТИКАМИ КИБЕРБЕЗОПАСНОСТИ БАНКА </br></p>
+		<p class='text'>За дополнительной консультацией обращайтесь в <br><b>Центр поддержки кибербезопасности:</b> </br></p>
+		<p class='text'> <b>Звоните</b>
+		<p class='text_contact'><b>8 800 707-45-00</b> (федеральный номер)
+		<p class='text_contact'><b>8 690 44-090 </b>(внутренний номер)
+		</td>
+    </tr>
+    <tr>
+        <td>
+		<p class='text2'> <b>Пишите</b>
+		<p class='text_contact'><b>SCST@sberbank.ru</b>
+		<p class='text_contact'><b>SCST@omega.sbrf.ru</b>
+		<p class='text'>Будьте бдительны! </p>
+		<p class='text'> <img src="http://10.35.222.105/logo_long_scs.png" width="270" > </p>
+		</td>
+        <td align="right" >
+		</td>
+    </tr>
+    <tr>
+        <td colspan="2">
+		<p class='text_diag_head'>Информация для ЦПКБ:
+		<p class='text_diag1'><b>Средство блокировки:</b> NGFW
+		<br><b>IP/User:</b> 10.8.23.49
+		<br><b>URL:</b> example.com:80/envoy.service.discovery.v3.AggregatedDiscoveryService/StreamAggregatedResources
+		<br><b>Category:</b> URL Blacklist Dyn
+		</p>
+		</td>
+    </tr>
+</table>
+
+</div>
+  </body>
+</html> nodeID: sidecar~172.17.109.56~xds-client-7c5548f44-4w88s.joker-demo-one~joker-demo-one.svc.cluster.local
+2022-11-03 14:41:11.501  WARN 54911 --- [grpc-default-executor-0] i.g.x.XdsServerBuilder$DefaultListener   : [port:50051] UNAVAILABLE: HTTP status code 503
+invalid content-type: text/html; charset=UTF-8
+headers: Metadata(:status=503,content-type=text/html; charset=UTF-8,p3p=CP="CAO PSA OUR",expires=Thu, 01 Jan 1970 00:00:00 GMT,cache-control=no-store, no-cache, must-revalidate, post-check=0, pre-check=0,pragma=no-cache,content-length=2847)
+DATA-----------------------------
+﻿<html>
+  <head>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=cyrillic" rel="stylesheet">
+  <title>Внимание!</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <style type="text/css">
+	body {
+		margin: 0;
+		padding: 0;
+	}
+
+	.demo{
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: 50%;
+		height: 60%;
+		margin: auto;
+		background-color: white;
+	}
+
+	p { font-family: "Open Sans"; font-size: 18px;}
+
+	p.link {
+	ont-family: "Open Sans"; font-size: 12px;
+    margin-top: 25px;
+	margin-bottom: 25px;
+	margin-left: 60px;
+	}
+	p.text {
+	ont-family: "Open Sans"; font-size: 18px;
+	margin-left: 60px;
+	}
+	p.text2 {
+	ont-family: "Open Sans"; font-size: 18px;
+	margin-top: 10px;
+	margin-left: 60px;
+	}
+	p.text_contact {
+	ont-family: "Open Sans"; font-size: 18px;
+	margin-left: 95px;
+	}
+	p.text_diag_head {
+	ont-family: "Open Sans"; font-size: 14px;
+	margin-top: 25px;
+	margin-left: 60px;
+	}
+	p.text_diag1 {
+	ont-family: "Open Sans"; font-size: 12px;
+	margin-left: 95px;
+	}
+    </style>
+  </head>
+  <body bgcolor="white" font-family: 'Open Sans', sans-serif;>
+
+<div class="demo">
+  <table>
+    <tr>
+        <td rowspan="3" valign="top" ><div id="heart"><div class="k"><img src="http://10.35.222.105/lock_small.png" width="200" height="200" ></div></div></td>
+        <td colspan="2">
+		<p class='text'>РЕСУРС ЗАБЛОКИРОВАН В СООТВЕТСТВИИ <br>С ПОЛИТИКАМИ КИБЕРБЕЗОПАСНОСТИ БАНКА </br></p>
+		<p class='text'>За дополнительной консультацией обращайтесь в <br><b>Центр поддержки кибербезопасности:</b> </br></p>
+		<p class='text'> <b>Звоните</b>
+		<p class='text_contact'><b>8 800 707-45-00</b> (федеральный номер)
+		<p class='text_contact'><b>8 690 44-090 </b>(внутренний номер)
+		</td>
+    </tr>
+    <tr>
+        <td>
+		<p class='text2'> <b>Пишите</b>
+		<p class='text_contact'><b>SCST@sberbank.ru</b>
+		<p class='text_contact'><b>SCST@omega.sbrf.ru</b>
+		<p class='text'>Будьте бдительны! </p>
+		<p class='text'> <img src="http://10.35.222.105/logo_long_scs.png" width="270" > </p>
+		</td>
+        <td align="right" >
+		</td>
+    </tr>
+    <tr>
+        <td colspan="2">
+		<p class='text_diag_head'>Информация для ЦПКБ:
+		<p class='text_diag1'><b>Средство блокировки:</b> NGFW
+		<br><b>IP/User:</b> 10.8.23.49
+		<br><b>URL:</b> example.com:80/envoy.service.discovery.v3.AggregatedDiscoveryService/StreamAggregatedResources
+		<br><b>Category:</b> URL Blacklist Dyn
+		</p>
+		</td>
+    </tr>
+</table>
+
+</div>
+  </body>
+</html> nodeID: sidecar~172.17.109.56~xds-client-7c5548f44-4w88s.joker-demo-one~joker-demo-one.svc.cluster.local
+2022-11-03 14:41:35.223  WARN 54911 --- [grpc-default-executor-0] i.g.x.XdsServerBuilder$DefaultListener   : [port:50051] UNAVAILABLE: HTTP status code 503
+invalid content-type: text/html; charset=UTF-8
+headers: Metadata(:status=503,content-type=text/html; charset=UTF-8,p3p=CP="CAO PSA OUR",expires=Thu, 01 Jan 1970 00:00:00 GMT,cache-control=no-store, no-cache, must-revalidate, post-check=0, pre-check=0,pragma=no-cache,content-length=2847)
+DATA-----------------------------
+﻿<html>
+  <head>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=cyrillic" rel="stylesheet">
+  <title>Внимание!</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <style type="text/css">
+	body {
+		margin: 0;
+		padding: 0;
+	}
+
+	.demo{
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: 50%;
+		height: 60%;
+		margin: auto;
+		background-color: white;
+	}
+
+	p { font-family: "Open Sans"; font-size: 18px;}
+
+	p.link {
+	ont-family: "Open Sans"; font-size: 12px;
+    margin-top: 25px;
+	margin-bottom: 25px;
+	margin-left: 60px;
+	}
+	p.text {
+	ont-family: "Open Sans"; font-size: 18px;
+	margin-left: 60px;
+	}
+	p.text2 {
+	ont-family: "Open Sans"; font-size: 18px;
+	margin-top: 10px;
+	margin-left: 60px;
+	}
+	p.text_contact {
+	ont-family: "Open Sans"; font-size: 18px;
+	margin-left: 95px;
+	}
+	p.text_diag_head {
+	ont-family: "Open Sans"; font-size: 14px;
+	margin-top: 25px;
+	margin-left: 60px;
+	}
+	p.text_diag1 {
+	ont-family: "Open Sans"; font-size: 12px;
+	margin-left: 95px;
+	}
+    </style>
+  </head>
+  <body bgcolor="white" font-family: 'Open Sans', sans-serif;>
+
+<div class="demo">
+  <table>
+    <tr>
+        <td rowspan="3" valign="top" ><div id="heart"><div class="k"><img src="http://10.35.222.105/lock_small.png" width="200" height="200" ></div></div></td>
+        <td colspan="2">
+		<p class='text'>РЕСУРС ЗАБЛОКИРОВАН В СООТВЕТСТВИИ <br>С ПОЛИТИКАМИ КИБЕРБЕЗОПАСНОСТИ БАНКА </br></p>
+		<p class='text'>За дополнительной консультацией обращайтесь в <br><b>Центр поддержки кибербезопасности:</b> </br></p>
+		<p class='text'> <b>Звоните</b>
+		<p class='text_contact'><b>8 800 707-45-00</b> (федеральный номер)
+		<p class='text_contact'><b>8 690 44-090 </b>(внутренний номер)
+		</td>
+    </tr>
+    <tr>
+        <td>
+		<p class='text2'> <b>Пишите</b>
+		<p class='text_contact'><b>SCST@sberbank.ru</b>
+		<p class='text_contact'><b>SCST@omega.sbrf.ru</b>
+		<p class='text'>Будьте бдительны! </p>
+		<p class='text'> <img src="http://10.35.222.105/logo_long_scs.png" width="270" > </p>
+		</td>
+        <td align="right" >
+		</td>
+    </tr>
+    <tr>
+        <td colspan="2">
+		<p class='text_diag_head'>Информация для ЦПКБ:
+		<p class='text_diag1'><b>Средство блокировки:</b> NGFW
+		<br><b>IP/User:</b> 10.8.23.49
+		<br><b>URL:</b> example.com:80/envoy.service.discovery.v3.AggregatedDiscoveryService/StreamAggregatedResources
+		<br><b>Category:</b> URL Blacklist Dyn
+		</p>
+		</td>
+    </tr>
+</table>
+
+</div>
+  </body>
+</html> nodeID: sidecar~172.17.109.56~xds-client-7c5548f44-4w88s.joker-demo-one~joker-demo-one.svc.cluster.local
+2022-11-03 14:42:38.719  WARN 54977 --- [grpc-timer-0] i.g.x.XdsServerBuilder$DefaultListener   : [port:50051] UNAVAILABLE: Listener xds.istio.io/grpc/lds/inbound/0.0.0.0:50051 unavailable

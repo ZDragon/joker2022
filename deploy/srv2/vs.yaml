@@ -1,0 +1,41 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: xds-versions
+  namespace: joker-demo-proxyless
+spec:
+  host: myxds.joker-demo-proxyless.svc.cluster.local
+  subsets:
+    - name: v1
+      labels:
+        version: v1
+    - name: v2
+      labels:
+        version: v2
+    - name: v3
+      labels:
+        version: v3
+
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: xds-weights
+  namespace: joker-demo-proxyless
+spec:
+  hosts:
+    - myxds.joker-demo-proxyless.svc.cluster.local
+  http:
+    - route:
+        - destination:
+            host: myxds.joker-demo-proxyless.svc.cluster.local
+            subset: v1
+          weight: 70
+        - destination:
+            host: myxds.joker-demo-proxyless.svc.cluster.local
+            subset: v2
+          weight: 10
+        - destination:
+            host: myxds.joker-demo-proxy.svc.cluster.local
+            subset: v3
+          weight: 20

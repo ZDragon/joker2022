@@ -1,0 +1,168 @@
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: joker-v2-env-variables
+  namespace: joker-demo-proxyless
+data:
+  global.xds.server.port: '50051'
+  global.xds.server.hostname: 'JokerV2'
+  global.xds.server.credentials.enabled: 'true'
+  global.xds.client.target: 'myxds.joker-demo-proxyless:50051'
+  global.logging.file.path: /opt/logs/
+  global.profile.active: server
+  global.jaeger.http-sender.url: jaeger-collector.istio-system.svc.cluster.local:14268
+  spring.application.name: JDemoServerPROXYLESS-V2
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: joker-v3-env-variables
+  namespace: joker-demo-proxyless
+data:
+  global.xds.server.port: '50051'
+  global.xds.server.hostname: 'JokerV3'
+  global.xds.server.credentials.enabled: 'true'
+  global.xds.client.target: 'myxds.joker-demo-proxyless:50051'
+  global.logging.file.path: /opt/logs/
+  global.profile.active: server
+  global.jaeger.http-sender.url: jaeger-collector.istio-system.svc.cluster.local:14268
+  spring.application.name: JDemoServerPROXY-V3
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xds-v2
+  namespace: joker-demo-proxyless
+  labels:
+    app: myxds
+    version: v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myxds
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: myxds
+        version: v2
+      annotations:
+        inject.istio.io/templates: grpc-agent
+        proxy.istio.io/config: '{"holdApplicationUntilProxyStarts": true}'
+        prometheus.istio.io/merge-metrics: "false"
+        prometheus.io/path: /actuator/prometheus
+        prometheus.io/port: '8080'
+        prometheus.io/scrape: 'true'
+    spec:
+      containers:
+        - name: xds
+          image: %IMAGE%
+          args:
+            - '-Dspring.profiles.active=server'
+          ports:
+            - containerPort: 50051
+              protocol: TCP
+            - containerPort: 8080
+              protocol: TCP
+          resources:
+            limits:
+              cpu: '2'
+              memory: 1Gi
+            requests:
+              cpu: '1'
+              memory: 512Mi
+          envFrom:
+            - configMapRef:
+                name: joker-v2-env-variables
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+            - mountPath: /opt/logs
+              name: logsdir
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: logsdir
+          emptyDir: { }
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xds-v3
+  namespace: joker-demo-proxyless
+  labels:
+    app: myxds
+    version: v3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myxds
+      version: v3
+  template:
+    metadata:
+      labels:
+        app: myxds
+        version: v3
+      annotations:
+        proxy.istio.io/config: '{"holdApplicationUntilProxyStarts": true}'
+        prometheus.istio.io/merge-metrics: "false"
+        prometheus.io/path: /actuator/prometheus
+        prometheus.io/port: '8080'
+        prometheus.io/scrape: 'true'
+    spec:
+      containers:
+        - name: xds
+          image: %IMAGE%
+          args:
+            - '-Dspring.profiles.active=server'
+          ports:
+            - containerPort: 50051
+              protocol: TCP
+            - containerPort: 8080
+              protocol: TCP
+          resources:
+            limits:
+              cpu: '2'
+              memory: 1Gi
+            requests:
+              cpu: '1'
+              memory: 512Mi
+          envFrom:
+            - configMapRef:
+                name: joker-v3-env-variables
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+            - mountPath: /opt/logs
+              name: logsdir
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: logsdir
+          emptyDir: { }
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600

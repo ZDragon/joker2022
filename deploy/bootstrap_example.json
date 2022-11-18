@@ -1,0 +1,100 @@
+{
+  "xds_servers": [
+    {
+      "server_uri": "unix:///etc/istio/proxy/XDS",
+      "channel_creds": [
+        {
+          "type": "insecure"
+        }
+      ],
+      "server_features": [
+        "xds_v3"
+      ]
+    }
+  ],
+  "node": {
+    "id": "sidecar~172.17.109.56~xds-client-7c5548f44-4w88s.joker-demo-one~joker-demo-one.svc.cluster.local",
+    "metadata": {
+      "ANNOTATIONS": {
+        "inject.istio.io/templates": "grpc-agent",
+        "kubectl.kubernetes.io/default-container": "xds",
+        "kubectl.kubernetes.io/default-logs-container": "xds",
+        "kubernetes.io/config.seen": "2022-09-12T09:41:13.729605695Z",
+        "kubernetes.io/config.source": "api",
+        "prometheus.io/path": "/actuator/prometheus",
+        "prometheus.io/port": "8081",
+        "prometheus.io/scrape": "true",
+        "prometheus.istio.io/merge-metrics": "false",
+        "proxy.istio.io/config": "{\"holdApplicationUntilProxyStarts\": true}",
+        "proxy.istio.io/overrides": "{\"containers\":[{\"name\":\"xds\",\"image\":\"%IMAGE%\",\"args\":[\"-Dspring.profiles.active=client\"],\"ports\":[{\"containerPort\":8081,\"protocol\":\"TCP\"}],\"envFrom\":[{\"configMapRef\":{\"name\":\"joker-client-env-variables\"}}],\"resources\":{},\"volumeMounts\":[{\"name\":\"logsdir\",\"mountPath\":\"/opt/logs\"},{\"name\":\"kube-api-access-z6fxt\",\"readOnly\":true,\"mountPath\":\"/var/run/secrets/kubernetes.io/serviceaccount\"}],\"terminationMessagePath\":\"/dev/termination-log\",\"terminationMessagePolicy\":\"File\",\"imagePullPolicy\":\"IfNotPresent\"}]}",
+        "sidecar.istio.io/rewriteAppHTTPProbers": "false",
+        "sidecar.istio.io/status": "{\"initContainers\":null,\"containers\":[\"istio-proxy\",\"xds\"],\"volumes\":[\"workload-socket\",\"workload-certs\",\"istio-xds\",\"istio-data\",\"istio-podinfo\",\"istio-token\",\"istiod-ca-cert\"],\"imagePullSecrets\":null,\"revision\":\"default\"}"
+      },
+      "APP_CONTAINERS": "xds",
+      "CLUSTER_ID": "Kubernetes",
+      "ENVOY_PROMETHEUS_PORT": 15090,
+      "ENVOY_STATUS_PORT": 15021,
+      "GENERATOR": "grpc",
+      "INSTANCE_IPS": "172.17.109.56",
+      "ISTIO_PROXY_SHA": "c5837eae93559dfa0279db04b3d565b9ec01c833",
+      "ISTIO_VERSION": "1.15.0",
+      "LABELS": {
+        "app": "myxds-client",
+        "pod-template-hash": "7c5548f44",
+        "service.istio.io/canonical-name": "myxds-client",
+        "service.istio.io/canonical-revision": "v1",
+        "version": "v1"
+      },
+      "MESH_ID": "cluster.local",
+      "NAME": "xds-client-7c5548f44-4w88s",
+      "NAMESPACE": "joker-demo-one",
+      "OWNER": "kubernetes://apis/apps/v1/namespaces/joker-demo-one/deployments/xds-client",
+      "PILOT_SAN": [
+        "istiod.istio-system.svc"
+      ],
+      "POD_PORTS": "[{\"containerPort\":8081,\"protocol\":\"TCP\"}]",
+      "PROV_CERT": "var/run/secrets/istio/root-cert.pem",
+      "PROXY_CONFIG": {
+        "binaryPath": "/usr/local/bin/envoy",
+        "concurrency": 2,
+        "configPath": "./etc/istio/proxy",
+        "controlPlaneAuthPolicy": "MUTUAL_TLS",
+        "discoveryAddress": "istiod.istio-system.svc:15012",
+        "drainDuration": "45s",
+        "extraStatTags": [
+          "federation_destination",
+          "federation_source",
+          "federation"
+        ],
+        "holdApplicationUntilProxyStarts": true,
+        "parentShutdownDuration": "60s",
+        "proxyAdminPort": 15000,
+        "serviceCluster": "istio-proxy",
+        "statNameLength": 189,
+        "statusPort": 15020,
+        "terminationDrainDuration": "5s",
+        "tracing": {
+          "zipkin": {
+            "address": "zipkin.istio-system:9411"
+          }
+        }
+      },
+      "SERVICE_ACCOUNT": "default",
+      "WORKLOAD_NAME": "xds-client"
+    },
+    "locality": {},
+    "UserAgentVersionType": null
+  },
+  "certificate_providers": {
+    "default": {
+      "plugin_name": "file_watcher",
+      "config": {
+        "certificate_file": "/var/lib/istio/data/cert-chain.pem",
+        "private_key_file": "/var/lib/istio/data/key.pem",
+        "ca_certificate_file": "/var/lib/istio/data/root-cert.pem",
+        "refresh_interval": "900s"
+      }
+    }
+  },
+  "server_listener_resource_name_template": "xds.istio.io/grpc/lds/inbound/%s"
+}
